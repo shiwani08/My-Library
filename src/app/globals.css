@@ -1,26 +1,83 @@
 @import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Press+Start+2P&family=UnifrakturMaguntia&display=swap'); */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0e1a40; /* Deep Ravenclaw blue */
+  --foreground: #c39439; /* Elegant bronze-gold accent */
+  --accent: #1a237e;     /* Slightly lighter navy for depth */
+  --highlight: #bfa76f;  /* Soft metallic shimmer */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+
+  /* 🎓 Fonts */
+  --font-sans: 'Georgia', 'Times New Roman', serif; /* classic, academic */
+  --font-mono: 'Courier New', monospace;
+  --font-harry: 'UnifrakturMaguntia', cursive; /* magical title font */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #070b1d; /* midnight blue */
+    --foreground: #d4af37; /* richer gold at night */
+    --accent: #101c4a;
+    --highlight: #e5c07b;
   }
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(160deg, var(--background), var(--accent));
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔮 Magical title styling */
+h1.site-title {
+  font-family: var(--font-harry);
+  font-size: 3rem;
+  color: var(--highlight);
+  text-shadow: 0 0 8px rgba(191, 167, 111, 0.6);
+  letter-spacing: 2px;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+a {
+  color: var(--highlight);
+  text-decoration: none;
+  border-bottom: 1px solid var(--highlight);
+  transition: color 0.3s, border-color 0.3s;
+}
+
+a:hover {
+  color: var(--foreground);
+  border-color: var(--foreground);
+}
+
+h1, h2, h3 {
+  color: var(--highlight);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button {
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, background-color 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  background-color: var(--highlight);
 }
