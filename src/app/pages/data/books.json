@@ -1,152 +1,302 @@
 [
   {
+    "_id": 1,
     "title": "Harry Potter and the Sorcerer's Stone",
     "author": "J.K. Rowling",
     "status": "currently-reading",
-    "image_url": "https://placehold.co/200x300?text=Harry+Potter+1"
+    "image_url": "https://placehold.co/200x300?text=Harry+Potter+1",
+    "description": "A young boy discovers he’s a wizard and begins his magical education at Hogwarts, uncovering a dark secret along the way.",
+    "genre": "Fantasy",
+    "rating": 4.9,
+    "year": 1997,
+    "pages": 309
   },
   {
+    "_id": 2,
     "title": "The Hobbit",
     "author": "J.R.R. Tolkien",
     "status": "have-read",
-    "image_url": "https://placehold.co/200x300?text=The+Hobbit"
+    "image_url": "https://placehold.co/200x300?text=The+Hobbit",
+    "description": "Bilbo Baggins is whisked away from his quiet life into an adventure to reclaim treasure from a fearsome dragon.",
+    "genre": "Fantasy Adventure",
+    "rating": 4.8,
+    "year": 1937,
+    "pages": 310
   },
   {
-    "title": "Pride and Prejudice",
+    "_id": 3,
+    "title": "Pr_ide and Prejudice",
     "author": "Jane Austen",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=Pride+and+Prejudice"
+    "image_url": "https://placehold.co/200x300?text=Pr_ide+and+Prejudice",
+    "description": "Elizabeth Bennet navigates love, class, and pr_ide in Regency-era England.",
+    "genre": "Classic Romance",
+    "rating": 4.6,
+    "year": 1813,
+    "pages": 279
   },
   {
+    "_id": 4,
     "title": "The Catcher in the Rye",
     "author": "J.D. Salinger",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=Catcher+in+the+Rye"
+    "image_url": "https://placehold.co/200x300?text=Catcher+in+the+Rye",
+    "description": "Holden Caulfield tells the story of teenage angst and alienation in postwar America.",
+    "genre": "Coming-of-Age Fiction",
+    "rating": 4.2,
+    "year": 1951,
+    "pages": 277
   },
   {
+    "_id": 5,
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
     "status": "have-read",
-    "image_url": "https://placehold.co/200x300?text=The+Great+Gatsby"
+    "image_url": "https://placehold.co/200x300?text=The+Great+Gatsby",
+    "description": "A mysterious millionaire’s doomed pursuit of love and the American Dream in the Jazz Age.",
+    "genre": "Classic Drama",
+    "rating": 4.7,
+    "year": 1925,
+    "pages": 180
   },
   {
+    "_id": 6,
     "title": "1984",
     "author": "George Orwell",
     "status": "currently-reading",
-    "image_url": "https://placehold.co/200x300?text=1984"
+    "image_url": "https://placehold.co/200x300?text=1984",
+    "description": "A dystopian world where surveillance and totalitarian control destroy freedom and truth.",
+    "genre": "Dystopian Fiction",
+    "rating": 4.8,
+    "year": 1949,
+    "pages": 328
   },
   {
+    "_id": 7,
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
     "status": "have-read",
-    "image_url": "https://placehold.co/200x300?text=To+Kill+a+Mockingbird"
+    "image_url": "https://placehold.co/200x300?text=To+Kill+a+Mockingbird",
+    "description": "A story of justice and innocence seen through the eyes of a young girl in the racially div_ided South.",
+    "genre": "Classic Fiction",
+    "rating": 4.9,
+    "year": 1960,
+    "pages": 281
   },
   {
+    "_id": 8,
     "title": "The Alchemist",
     "author": "Paulo Coelho",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=The+Alchemist"
+    "image_url": "https://placehold.co/200x300?text=The+Alchemist",
+    "description": "A shepherd embarks on a mystical journey to discover his destiny and personal legend.",
+    "genre": "Philosophical Fiction",
+    "rating": 4.5,
+    "year": 1988,
+    "pages": 208
   },
   {
+    "_id": 9,
     "title": "The Name of the Wind",
     "author": "Patrick Rothfuss",
     "status": "currently-reading",
-    "image_url": "https://placehold.co/200x300?text=Name+of+the+Wind"
+    "image_url": "https://placehold.co/200x300?text=Name+of+the+Wind",
+    "description": "The life story of a gifted musician and magician told in his own voice.",
+    "genre": "Epic Fantasy",
+    "rating": 4.8,
+    "year": 2007,
+    "pages": 662
   },
   {
+    "_id": 10,
     "title": "Mistborn: The Final Empire",
     "author": "Brandon Sanderson",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=Mistborn"
+    "image_url": "https://placehold.co/200x300?text=Mistborn",
+    "description": "In a world ruled by an immortal tyrant, a young thief discovers her power to challenge the impossible.",
+    "genre": "Fantasy",
+    "rating": 4.7,
+    "year": 2006,
+    "pages": 541
   },
   {
+    "_id": 11,
     "title": "The Lightning Thief",
     "author": "Rick Riordan",
     "status": "have-read",
-    "image_url": "https://placehold.co/200x300?text=Percy+Jackson"
+    "image_url": "https://placehold.co/200x300?text=Percy+Jackson",
+    "description": "A modern teen discovers he’s the son of Pose_idon and must prevent a war among the gods.",
+    "genre": "Fantasy Adventure",
+    "rating": 4.6,
+    "year": 2005,
+    "pages": 377
   },
   {
+    "_id": 12,
     "title": "The Fellowship of the Ring",
     "author": "J.R.R. Tolkien",
     "status": "currently-reading",
-    "image_url": "https://placehold.co/200x300?text=LOTR+1"
+    "image_url": "https://placehold.co/200x300?text=LOTR+1",
+    "description": "A hobbit named Frodo begins his perilous journey to destroy a powerful ring of evil.",
+    "genre": "Epic Fantasy",
+    "rating": 4.9,
+    "year": 1954,
+    "pages": 423
   },
   {
+    "_id": 13,
     "title": "The Two Towers",
     "author": "J.R.R. Tolkien",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=LOTR+2"
+    "image_url": "https://placehold.co/200x300?text=LOTR+2",
+    "description": "The fellowship splits as M_iddle-earth faces darkness and new alliances are forged.",
+    "genre": "Epic Fantasy",
+    "rating": 4.8,
+    "year": 1954,
+    "pages": 352
   },
   {
+    "_id": 14,
     "title": "The Return of the King",
     "author": "J.R.R. Tolkien",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=LOTR+3"
+    "image_url": "https://placehold.co/200x300?text=LOTR+3",
+    "description": "The final battle for M_iddle-earth unfolds as Frodo nears Mount Doom.",
+    "genre": "Epic Fantasy",
+    "rating": 4.9,
+    "year": 1955,
+    "pages": 416
   },
   {
+    "_id": 15,
     "title": "A Game of Thrones",
     "author": "George R.R. Martin",
     "status": "currently-reading",
-    "image_url": "https://placehold.co/200x300?text=GoT"
+    "image_url": "https://placehold.co/200x300?text=GoT",
+    "description": "Noble families battle for the Iron Throne while ancient forces awaken beyond the Wall.",
+    "genre": "Fantasy Drama",
+    "rating": 4.8,
+    "year": 1996,
+    "pages": 694
   },
   {
+    "_id": 16,
     "title": "A Clash of Kings",
     "author": "George R.R. Martin",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=Clash+of+Kings"
+    "image_url": "https://placehold.co/200x300?text=Clash+of+Kings",
+    "description": "As kings rise and fall, war spreads across Westeros and power shifts in unexpected ways.",
+    "genre": "Fantasy Drama",
+    "rating": 4.7,
+    "year": 1998,
+    "pages": 768
   },
   {
+    "_id": 17,
     "title": "The Book Thief",
     "author": "Markus Zusak",
     "status": "have-read",
-    "image_url": "https://placehold.co/200x300?text=The+Book+Thief"
+    "image_url": "https://placehold.co/200x300?text=The+Book+Thief",
+    "description": "A young girl in Nazi Germany finds solace and rebellion through stolen books.",
+    "genre": "Historical Fiction",
+    "rating": 4.9,
+    "year": 2005,
+    "pages": 552
   },
   {
-    "title": "The Midnight Library",
+    "_id": 18,
+    "title": "The M_idnight Library",
     "author": "Matt Haig",
     "status": "currently-reading",
-    "image_url": "https://placehold.co/200x300?text=Midnight+Library"
+    "image_url": "https://placehold.co/200x300?text=M_idnight+Library",
+    "description": "Between life and death lies a library where every book tells a different version of your life.",
+    "genre": "Fantasy Fiction",
+    "rating": 4.6,
+    "year": 2020,
+    "pages": 304
   },
   {
+    "_id": 19,
     "title": "Dune",
     "author": "Frank Herbert",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=Dune"
+    "image_url": "https://placehold.co/200x300?text=Dune",
+    "description": "On a desert planet, a young man becomes the key to humanity’s survival and freedom.",
+    "genre": "Science Fiction",
+    "rating": 4.8,
+    "year": 1965,
+    "pages": 688
   },
   {
+    "_id": 20,
     "title": "The Hunger Games",
     "author": "Suzanne Collins",
     "status": "have-read",
-    "image_url": "https://placehold.co/200x300?text=Hunger+Games"
+    "image_url": "https://placehold.co/200x300?text=Hunger+Games",
+    "description": "In a dystopian future, teens fight to the death for the entertainment of the Capitol.",
+    "genre": "Dystopian Fiction",
+    "rating": 4.7,
+    "year": 2008,
+    "pages": 374
   },
   {
+    "_id": 21,
     "title": "Catching Fire",
     "author": "Suzanne Collins",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=Catching+Fire"
+    "image_url": "https://placehold.co/200x300?text=Catching+Fire",
+    "description": "Katniss faces new trials as rebellion brews across Panem after her survival in the Games.",
+    "genre": "Dystopian Fiction",
+    "rating": 4.6,
+    "year": 2009,
+    "pages": 391
   },
   {
+    "_id": 22,
     "title": "Mockingjay",
     "author": "Suzanne Collins",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=Mockingjay"
+    "image_url": "https://placehold.co/200x300?text=Mockingjay",
+    "description": "Katniss leads the final rebellion against the Capitol to end the Games forever.",
+    "genre": "Dystopian Fiction",
+    "rating": 4.5,
+    "year": 2010,
+    "pages": 390
   },
   {
+    "_id": 23,
     "title": "The Da Vinci Code",
     "author": "Dan Brown",
     "status": "have-read",
-    "image_url": "https://placehold.co/200x300?text=Da+Vinci+Code"
+    "image_url": "https://placehold.co/200x300?text=Da+Vinci+Code",
+    "description": "A symbologist unravels h_idden secrets of art, religion, and power in a deadly race across Europe.",
+    "genre": "Thriller Mystery",
+    "rating": 4.4,
+    "year": 2003,
+    "pages": 454
   },
   {
+    "_id": 24,
     "title": "Angels & Demons",
     "author": "Dan Brown",
     "status": "currently-reading",
-    "image_url": "https://placehold.co/200x300?text=Angels+and+Demons"
+    "image_url": "https://placehold.co/200x300?text=Angels+and+Demons",
+    "description": "A secret brotherhood threatens the Vatican, and one man must solve the clues to stop them.",
+    "genre": "Thriller Mystery",
+    "rating": 4.5,
+    "year": 2000,
+    "pages": 480
   },
   {
+    "_id": 25,
     "title": "The Shadow of the Wind",
     "author": "Carlos Ruiz Zafón",
     "status": "to-be-read",
-    "image_url": "https://placehold.co/200x300?text=Shadow+of+the+Wind"
+    "image_url": "https://placehold.co/200x300?text=Shadow+of+the+Wind",
+    "description": "A boy discovers a forgotten book in a secret library and becomes obsessed with its mysterious author.",
+    "genre": "Historical Mystery",
+    "rating": 4.8,
+    "year": 2001,
+    "pages": 487
   }
 ]

@@ -11,6 +11,9 @@ export default function CurrentlyReading() {
     const fetchBooks = async () => {
       const response = await fetch("/data/books.json");
       const data = await response.json();
+      console.log(data);
+      console.log("from the useeffect func", data[0]._id)
+      console.log(JSON.stringify(data, null, 2));
       setBooks(data);
     };
 
@@ -25,12 +28,24 @@ export default function CurrentlyReading() {
         {books
           .filter((book) => book.status === "currently-reading")
           .map((book) => (
-            <BookCard
-              key={book.title}
-              title={book.title}
-              author={book.author}
-              status={book.status}
-            />
+            <div
+              key={book._id}
+              role="button"
+              tabIndex={0}
+              onClick={() => console.log("Book ID:", book._id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  console.log(book._id);
+                  console.log("Book ID:", book._id);
+                }
+              }}
+            >
+              <BookCard
+                title={book.title}
+                author={book.author}
+                status={book.status}
+              />
+            </div>
           ))}
       </div>
     </main>
