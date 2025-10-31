@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; // optional icons, install via `npm i lucide-react`
+import { Menu, X } from "lucide-react"; 
+import CurrentlyReading from "@/app/pages/currently-reading/page";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
           <Link href="/" className="hover:text-[#bfa76f] transition-colors duration-200">Home</Link>
-          <Link href="/about" className="hover:text-[#bfa76f] transition-colors duration-200">About</Link>
+          <Link href="/pages/currently-reading" className="hover:text-[#d17558] transition-colors duration-200">Currently Reading</Link>
           {/* <Link href="/archive" className="hover:text-[#bfa76f] transition-colors duration-200">Archive</Link>
           <Link href="/contact" className="hover:text-[#bfa76f] transition-colors duration-200">Contact</Link> */}
         </div>
@@ -35,9 +36,9 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden bg-[#0e1a40] text-[#c39439] space-y-3 py-4 px-6">
           <Link href="/" className="block hover:text-[#bfa76f]">Home</Link>
-          <Link href="/about" className="block hover:text-[#bfa76f]">About</Link>
-          <Link href="/archive" className="block hover:text-[#bfa76f]">Archive</Link>
-          <Link href="/contact" className="block hover:text-[#bfa76f]">Contact</Link>
+          <Link href="/pages/currently-reading" className="block hover:text-[#bfa76f]">Currently Reading</Link>
+          {/* <Link href="/archive" className="block hover:text-[#bfa76f]">Archive</Link>
+          <Link href="/contact" className="block hover:text-[#bfa76f]">Contact</Link> */}
         </div>
       )}
     </nav>
