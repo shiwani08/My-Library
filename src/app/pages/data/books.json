@@ -1,0 +1,152 @@
+[
+  {
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "author": "J.K. Rowling",
+    "status": "currently-reading",
+    "image_url": "https://placehold.co/200x300?text=Harry+Potter+1"
+  },
+  {
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "status": "have-read",
+    "image_url": "https://placehold.co/200x300?text=The+Hobbit"
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=Pride+and+Prejudice"
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=Catcher+in+the+Rye"
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "status": "have-read",
+    "image_url": "https://placehold.co/200x300?text=The+Great+Gatsby"
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "status": "currently-reading",
+    "image_url": "https://placehold.co/200x300?text=1984"
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "status": "have-read",
+    "image_url": "https://placehold.co/200x300?text=To+Kill+a+Mockingbird"
+  },
+  {
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=The+Alchemist"
+  },
+  {
+    "title": "The Name of the Wind",
+    "author": "Patrick Rothfuss",
+    "status": "currently-reading",
+    "image_url": "https://placehold.co/200x300?text=Name+of+the+Wind"
+  },
+  {
+    "title": "Mistborn: The Final Empire",
+    "author": "Brandon Sanderson",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=Mistborn"
+  },
+  {
+    "title": "The Lightning Thief",
+    "author": "Rick Riordan",
+    "status": "have-read",
+    "image_url": "https://placehold.co/200x300?text=Percy+Jackson"
+  },
+  {
+    "title": "The Fellowship of the Ring",
+    "author": "J.R.R. Tolkien",
+    "status": "currently-reading",
+    "image_url": "https://placehold.co/200x300?text=LOTR+1"
+  },
+  {
+    "title": "The Two Towers",
+    "author": "J.R.R. Tolkien",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=LOTR+2"
+  },
+  {
+    "title": "The Return of the King",
+    "author": "J.R.R. Tolkien",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=LOTR+3"
+  },
+  {
+    "title": "A Game of Thrones",
+    "author": "George R.R. Martin",
+    "status": "currently-reading",
+    "image_url": "https://placehold.co/200x300?text=GoT"
+  },
+  {
+    "title": "A Clash of Kings",
+    "author": "George R.R. Martin",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=Clash+of+Kings"
+  },
+  {
+    "title": "The Book Thief",
+    "author": "Markus Zusak",
+    "status": "have-read",
+    "image_url": "https://placehold.co/200x300?text=The+Book+Thief"
+  },
+  {
+    "title": "The Midnight Library",
+    "author": "Matt Haig",
+    "status": "currently-reading",
+    "image_url": "https://placehold.co/200x300?text=Midnight+Library"
+  },
+  {
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=Dune"
+  },
+  {
+    "title": "The Hunger Games",
+    "author": "Suzanne Collins",
+    "status": "have-read",
+    "image_url": "https://placehold.co/200x300?text=Hunger+Games"
+  },
+  {
+    "title": "Catching Fire",
+    "author": "Suzanne Collins",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=Catching+Fire"
+  },
+  {
+    "title": "Mockingjay",
+    "author": "Suzanne Collins",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=Mockingjay"
+  },
+  {
+    "title": "The Da Vinci Code",
+    "author": "Dan Brown",
+    "status": "have-read",
+    "image_url": "https://placehold.co/200x300?text=Da+Vinci+Code"
+  },
+  {
+    "title": "Angels & Demons",
+    "author": "Dan Brown",
+    "status": "currently-reading",
+    "image_url": "https://placehold.co/200x300?text=Angels+and+Demons"
+  },
+  {
+    "title": "The Shadow of the Wind",
+    "author": "Carlos Ruiz Zafón",
+    "status": "to-be-read",
+    "image_url": "https://placehold.co/200x300?text=Shadow+of+the+Wind"
+  }
+]
