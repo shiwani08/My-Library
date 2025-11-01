@@ -21,6 +21,7 @@ const unifraktur = UnifrakturMaguntia({
 export const metadata: Metadata = {
   title: "The Ravenclaw Library",
   description: "Where wisdom meets wonder.",
+  icons: { icon: "/booked-logo.png" },
 };
 
 // Root layout

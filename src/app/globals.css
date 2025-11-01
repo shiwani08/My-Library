@@ -2,7 +2,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Press+Start+2P&family=UnifrakturMaguntia&display=swap'); */
 
 :root {
-  --background: #0e1a40; /* Deep Ravenclaw blue */
+  --background: #ffffff; /* Deep Ravenclaw blue */
   --foreground: #c39439; /* Elegant bronze-gold accent */
   --accent: #1a237e;     /* Slightly lighter navy for depth */
   --highlight: #bfa76f;  /* Soft metallic shimmer */
@@ -21,7 +21,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #070b1d; /* midnight blue */
+    --background: #ffffff; /* midnight blue */
     --foreground: #d4af37; /* richer gold at night */
     --accent: #101c4a;
     --highlight: #e5c07b;
