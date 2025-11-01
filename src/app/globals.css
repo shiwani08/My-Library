@@ -4,7 +4,7 @@
 :root {
   --background: #ffffff; /* Deep Ravenclaw blue */
   --foreground: #c39439; /* Elegant bronze-gold accent */
-  --accent: #1a237e;     /* Slightly lighter navy for depth */
+  --accent: #f0f1ff;     /* Slightly lighter navy for depth */
   --highlight: #bfa76f;  /* Soft metallic shimmer */
 }
 
@@ -23,13 +23,14 @@
   :root {
     --background: #ffffff; /* midnight blue */
     --foreground: #d4af37; /* richer gold at night */
-    --accent: #101c4a;
+    --accent: #f0f1ff;
     --highlight: #e5c07b;
   }
 }
 
+/* 🧭 Body Styling (Solid Background, No Gradient) */
 body {
-  background: linear-gradient(160deg, var(--background), var(--accent));
+  background-color: var(--accent);
   color: var(--foreground);
   font-family: var(--font-sans);
   letter-spacing: 0.5px;
@@ -37,7 +38,7 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-/* 🔮 Magical title styling */
+/* 🔮 Magical Title Styling */
 h1.site-title {
   font-family: var(--font-harry);
   font-size: 3rem;
@@ -48,24 +49,28 @@ h1.site-title {
   margin-top: 1.5rem;
 }
 
+/* ✨ Links */
 a {
   color: var(--highlight);
-  text-decoration: none;
-  border-bottom: 1px solid var(--highlight);
-  transition: color 0.3s, border-color 0.3s;
+  text-decoration: none !important;
+  border: none !important;
+  transition: color 0.3s ease;
 }
 
 a:hover {
   color: var(--foreground);
-  border-color: var(--foreground);
+  text-decoration: none !important;
+  border: none !important;
 }
 
+/* 🪄 Headings */
 h1, h2, h3 {
   color: var(--highlight);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
+/* 🎠 Buttons */
 button {
   background-color: var(--foreground);
   color: var(--background);
@@ -80,4 +85,35 @@ button {
 button:hover {
   transform: translateY(-2px);
   background-color: var(--highlight);
+}
+
+/* 🧭 Ant Design Navbar */
+.ant-menu {
+  background: transparent !important;
+  color: #c39439 !important;
+  font-weight: 500;
+  border-bottom: none !important;
+}
+
+/* Menu Items (no underline, no border) */
+.ant-menu-item,
+.ant-menu-item-selected,
+.ant-menu-item:hover {
+  color: #bfa76f !important;
+  font-size: medium;
+  font-family: var(--font-sans);
+  border: none !important;
+  border-bottom: none !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}
+
+/* Active Item Highlight Color */
+.ant-menu-item-selected {
+  color: #4191dd !important;
+}
+
+/* Hover Effect (color change only, no underline) */
+.ant-menu-item:hover {
+  color: #9da5ff !important;
 }

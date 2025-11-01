@@ -22,15 +22,30 @@ export default function HomePage() {
       <h1>All Books</h1>
       <p>List of books that you own!</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {books.map((book) => (
-            <BookCard
-              key={book.title}
-              title={book.title}
-              author={book.author}
-              status={book.status}
-            />
-          ))}
-      </div>
+              {books
+                .map((book, index) => (
+                  <div
+                    key={book._id || index}
+                    role="button"
+                    tabIndex={0}
+                    title={book.title}
+                    aria-label={`Open details for ${book.title}`}
+                    onClick={() => console.log("Book ID:", book._id)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        console.log("Book ID:", book._id);
+                      }
+                    }}
+                  >
+                    <BookCard
+                      title={book.title}
+                      author={book.author}
+                      status={book.status}
+                      image_url={book.image_url ?? ""}
+                    />
+                  </div>
+                ))}
+            </div>
     </main>
   );
 }

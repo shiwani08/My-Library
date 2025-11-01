@@ -14,12 +14,16 @@ const statusColors: Record<BookCardProps["status"], string> = {
   Wishlist: "bg-[#bfa76f] text-[#0e1a40]",
 };
 
-export default function BookCard({ title, author, status, image_url }: BookCardProps) {
+export default function BookCard({
+  title,
+  author,
+  status,
+  image_url,
+}: BookCardProps) {
   const statusStyle = statusColors[status] || "bg-gray-600 text-white";
 
   return (
     <div className="rounded-lg p-3 text-[#c39439] hover:-translate-y-1 transform transition-all duration-300 w-48 mx-auto flex flex-col items-center">
-      
       {/* Book Image */}
       {image_url && (
         <div className="w-full h-64 overflow-hidden rounded-md">
@@ -50,4 +54,3 @@ export default function BookCard({ title, author, status, image_url }: BookCardP
     </div>
   );
 }
-
