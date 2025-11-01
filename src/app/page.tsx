@@ -1,6 +1,6 @@
 import { MedievalSharp } from 'next/font/google';
 import './globals.css';
-import CurrentlyReading from '@/app/pages/currently-reading/page';
+import CurrentlyReading from '@/app/(pages)/currently-reading/page';
 
 const medievalSharp = MedievalSharp({ subsets: ["latin"], weight: "400" });
 

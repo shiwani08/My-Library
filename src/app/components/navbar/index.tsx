@@ -16,10 +16,10 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
-          <Link href="/pages/all" className="hover:text-[#bfa76f] transition-colors duration-200">Home</Link>
-          <Link href="/pages/currently-reading" className="hover:text-[#d17558] transition-colors duration-200">Currently Reading</Link>
-          <Link href="/pages/have-read" className="hover:text-[#d17558] transition-colors duration-200">Have Read</Link>
-          <Link href="/pages/to-be-read" className="hover:text-[#d17558] transition-colors duration-200">To Be Read</Link>
+          <Link href="/all" className="hover:text-[#bfa76f] transition-colors duration-200">Home</Link>
+          <Link href="/currently-reading" className="hover:text-[#d17558] transition-colors duration-200">Currently Reading</Link>
+          <Link href="/have-read" className="hover:text-[#d17558] transition-colors duration-200">Have Read</Link>
+          <Link href="/to-be-read" className="hover:text-[#d17558] transition-colors duration-200">To Be Read</Link>
           {/* <Link href="/archive" className="hover:text-[#bfa76f] transition-colors duration-200">Archive</Link>
           <Link href="/contact" className="hover:text-[#bfa76f] transition-colors duration-200">Contact</Link> */}
         </div>
@@ -36,10 +36,10 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-[#0e1a40] text-[#c39439] space-y-3 py-4 px-6">
-          <Link href="/pages/all" className="block hover:text-[#bfa76f]">Home</Link>
-          <Link href="/pages/currently-reading" className="block hover:text-[#bfa76f]">Currently Reading</Link>
-          <Link href="/pages/have-read" className="block hover:text-[#bfa76f]">Have Read</Link>
-        <Link href="/pages/to-be-read" className="block hover:text-[#bfa76f]">To Be Read</Link>
+          <Link href="/" className="block hover:text-[#bfa76f]">Home</Link>
+          <Link href="/currently-reading" className="block hover:text-[#bfa76f]">Currently Reading</Link>
+          <Link href="/have-read" className="block hover:text-[#bfa76f]">Have Read</Link>
+        <Link href="/to-be-read" className="block hover:text-[#bfa76f]">To Be Read</Link>
           {/* <Link href="/archive" className="block hover:text-[#bfa76f]">Archive</Link>
           <Link href="/contact" className="block hover:text-[#bfa76f]">Contact</Link> */}
         </div>
