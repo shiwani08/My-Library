@@ -17,7 +17,8 @@ This document describes the Ant Design components integrated into the project an
 | `Input` | A basic text input field. | Used inside the `Form` for fields like Book Title, Author, etc. |
 | `Select` | A dropdown selection menu. | Used inside the `Form` for selecting book categories or reading statuses. |
 | `Button` | A clickable element for user actions. | Used to trigger actions such as opening the modal, submitting a form, or cancelling an oper
-| `Avatar` |  |  | 
+| `Avatar` |  |  |
+| `Drawer` |  |  | 
 | `Autocomplete` |  |  |
 
       
