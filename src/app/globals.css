@@ -28,12 +28,29 @@
 }
 
 body {
+  margin: 0;
   background-color: var(--accent);
   color: var(--foreground);
   font-family: var(--font-sans);
   letter-spacing: 0.5px;
   line-height: 1.6;
   transition: all 0.3s ease-in-out;
+}
+
+.navbar-container {
+  background: linear-gradient(to right, #0e1a40, #1a237e);
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #c39439;
+  padding-top: 3rem;
+  z-index: 1000;
+}
+
+.page-content {
+  padding-top: 7rem;
 }
 
 h1.site-title {
@@ -156,12 +173,13 @@ button:hover {
   background-color: #0e1a40;
   color: #c39439;
   transition: transform 0.3s ease;
-  /* padding-left: 2rem; */
+  padding: auto;
   margin: auto;
 }
 
 .book-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 0 10px #0e1a40;
 }
 
 .book-card-cover {

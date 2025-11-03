@@ -31,14 +31,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${medievalSharp.variable} ${unifraktur.variable} antialiased`}
-      >
+  <html lang="en">
+    <body
+      className={`${medievalSharp.variable} ${unifraktur.variable} antialiased`}
+    >
+      <nav className="navbar-container">
         <Navbar />
-        <main className="pt-16">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
+      </nav>
+
+      <main className="page-content">{children}</main>
+
+      <Footer />
+    </body>
+  </html>
+);
+
 }
