@@ -202,3 +202,60 @@ button:hover {
   margin-right: 20px;
   margin-bottom: 20px;
 }
+
+.footer-container {
+  background-color: #0e1a40;
+  color: #c39439;
+  border-top: 1px solid #1a237e;
+  padding: 1.5rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+  }
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-link {
+  color: #c39439;
+  font-size: 1.3rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #bfa76f;
+  transform: translateY(-2px);
+}
+
+.footer-quote {
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-top: 1rem;
+  color: #bfa76f;
+  opacity: 0.85;
+}
+
