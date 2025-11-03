@@ -87,6 +87,40 @@ button:hover {
   background-color: var(--highlight);
 }
 
+.app-layout {
+  min-height: 100vh;
+  background-color: #0e1a40;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.app-header {
+  background: #0e1a40;
+  padding: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  border-bottom: 1px solid #c39439;
+}
+
+/* Main Content */
+.app-content {
+  margin-top: 80px;
+  padding: 24px 48px;
+  flex: 1;
+  color: #c39439;
+}
+
+/* Footer */
+.app-footer {
+  background: #0e1a40;
+  color: #bfa76f;
+  text-align: center;
+  border-top: 1px solid #c39439;
+  padding: 16px 0;
+}
+
 /* 🧭 Ant Design Navbar */
 .ant-menu {
   background: transparent !important;
@@ -165,3 +199,12 @@ button:hover {
   border-radius: 20px !important;
   font-weight: 500;
 }
+
+.add-books {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px; /* adds space inside the container */
+  margin-right: 20px;  /* adds space outside the container */
+  margin-bottom: 20px; /* optional, keeps gap from content below */
+}
+

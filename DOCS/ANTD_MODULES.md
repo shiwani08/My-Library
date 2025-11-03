@@ -12,9 +12,13 @@ This document describes the Ant Design components integrated into the project an
 | `Layout` |  |  |
 | `Header` |  |  |
 | `Typography` |  |  |
-| `Form` |  |  |
+| `Form` | Provides a flexible and declarative way to handle form data and validation. | Used to capture user inputs for adding or editing book details. |
+| `Modal` | Displays content in a popup layer above the page content. | Used to show the “Add Book” or “Edit Book” form in a modal window. |
+| `Input` | A basic text input field. | Used inside the `Form` for fields like Book Title, Author, etc. |
+| `Select` | A dropdown selection menu. | Used inside the `Form` for selecting book categories or reading statuses. |
+| `Button` | A clickable element for user actions. | Used to trigger actions such as opening the modal, submitting a form, or cancelling an operation. |
+
 | `Autocomplete` |  |  |
-| `Modal` |  |  |
 
       
 All these components help maintain a consistent, polished, and responsive UI using Ant Design’s robust system.
