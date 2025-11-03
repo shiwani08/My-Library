@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { Card, Tag } from "antd";
 
 type BookCardProps = {
   title: string;
@@ -9,9 +10,9 @@ type BookCardProps = {
 };
 
 const statusColors: Record<BookCardProps["status"], string> = {
-  "Currently Reading": "bg-[#1a237e] text-[#c39439]",
-  Finished: "bg-[#0e1a40] text-[#bfa76f]",
-  Wishlist: "bg-[#bfa76f] text-[#0e1a40]",
+  "currently-reading": "geekblue",
+  "have-read": "green",
+  "to-be-read": "gold",
 };
 
 export default function BookCard({
@@ -20,37 +21,34 @@ export default function BookCard({
   status,
   image_url,
 }: BookCardProps) {
-  const statusStyle = statusColors[status] || "bg-gray-600 text-white";
+  const color = statusColors[status] || "default";
 
   return (
-    <div className="rounded-lg p-3 text-[#c39439] hover:-translate-y-1 transform transition-all duration-300 w-48 mx-auto flex flex-col items-center">
-      {/* Book Image */}
-      {image_url && (
-        <div className="w-full h-64 overflow-hidden rounded-md">
+    <Card
+      hoverable
+      className="book-card"
+      cover={
+        <div className="book-card-cover">
           <Image
             src={image_url || "/booked-logo.png"}
             alt={title}
             width={200}
-            height={300}
-            className="object-cover w-full h-full rounded-md"
+            height={250}
+            className="book-card-image"
           />
         </div>
-      )}
+      }
+    >
+      <Card.Meta
+        title={<span className="book-card-title">{title}</span>}
+        description={<span className="book-card-author">{author}</span>}
+      />
 
-      {/* Book Info */}
-      <div className="text-center mt-3">
-        <h3 className="text-lg font-semibold text-[#bfa76f] font-title leading-snug">
-          {title}
-        </h3>
-        <p className="text-sm italic text-[#d4af37] mt-1">{author}</p>
+      <div className="book-card-status">
+        <Tag color={color} className="book-card-tag">
+          {status.replace("-", " ")}
+        </Tag>
       </div>
-
-      {/* Status Badge */}
-      <span
-        className={`inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium ${statusStyle}`}
-      >
-        {status.replace("-", " ")}
-      </span>
-    </div>
+    </Card>
   );
 }
