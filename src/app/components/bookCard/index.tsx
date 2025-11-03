@@ -29,7 +29,7 @@ export default function BookCard({
       className="book-card"
       cover={
         <div className="book-card-cover">
-          <Image
+          <Image unoptimized
             src={image_url || "/booked-logo.png"}
             alt={title}
             width={200}

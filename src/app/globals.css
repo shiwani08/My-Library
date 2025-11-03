@@ -2,10 +2,10 @@
 /* @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Press+Start+2P&family=UnifrakturMaguntia&display=swap'); */
 
 :root {
-  --background: #ffffff; /* Deep Ravenclaw blue */
-  --foreground: #c39439; /* Elegant bronze-gold accent */
-  --accent: #f0f1ff;     /* Slightly lighter navy for depth */
-  --highlight: #bfa76f;  /* Soft metallic shimmer */
+  --background: #ffffff;
+  --foreground: #c39439;
+  --accent: #f0f1ff;
+  --highlight: #bfa76f;
 }
 
 @theme inline {
@@ -13,22 +13,20 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
 
-  /* 🎓 Fonts */
-  --font-sans: 'Georgia', 'Times New Roman', serif; /* classic, academic */
-  --font-mono: 'Courier New', monospace;
-  --font-harry: 'UnifrakturMaguntia', cursive; /* magical title font */
+  --font-sans: "Georgia", "Times New Roman", serif;
+  --font-mono: "Courier New", monospace;
+  --font-harry: "UnifrakturMaguntia", cursive;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffff; /* midnight blue */
-    --foreground: #d4af37; /* richer gold at night */
+    --background: #ffffff;
+    --foreground: #d4af37;
     --accent: #f0f1ff;
     --highlight: #e5c07b;
   }
 }
 
-/* 🧭 Body Styling (Solid Background, No Gradient) */
 body {
   background-color: var(--accent);
   color: var(--foreground);
@@ -38,7 +36,6 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-/* 🔮 Magical Title Styling */
 h1.site-title {
   font-family: var(--font-harry);
   font-size: 3rem;
@@ -49,7 +46,6 @@ h1.site-title {
   margin-top: 1.5rem;
 }
 
-/* ✨ Links */
 a {
   color: var(--highlight);
   text-decoration: none !important;
@@ -63,14 +59,14 @@ a:hover {
   border: none !important;
 }
 
-/* 🪄 Headings */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--highlight);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-/* 🎠 Buttons */
 button {
   background-color: var(--foreground);
   color: var(--background);
@@ -94,7 +90,6 @@ button:hover {
   flex-direction: column;
 }
 
-/* Header */
 .app-header {
   background: #0e1a40;
   padding: 0;
@@ -104,7 +99,6 @@ button:hover {
   border-bottom: 1px solid #c39439;
 }
 
-/* Main Content */
 .app-content {
   margin-top: 80px;
   padding: 24px 48px;
@@ -112,7 +106,14 @@ button:hover {
   color: #c39439;
 }
 
-/* Footer */
+.user-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #c39439;
+}
+
 .app-footer {
   background: #0e1a40;
   color: #bfa76f;
@@ -121,7 +122,6 @@ button:hover {
   padding: 16px 0;
 }
 
-/* 🧭 Ant Design Navbar */
 .ant-menu {
   background: transparent !important;
   color: #c39439 !important;
@@ -129,7 +129,6 @@ button:hover {
   border-bottom: none !important;
 }
 
-/* Menu Items (no underline, no border) */
 .ant-menu-item,
 .ant-menu-item-selected,
 .ant-menu-item:hover {
@@ -142,17 +141,13 @@ button:hover {
   background: transparent !important;
 }
 
-/* Active Item Highlight Color */
 .ant-menu-item-selected {
   color: #4191dd !important;
 }
 
-/* Hover Effect (color change only, no underline) */
 .ant-menu-item:hover {
   color: #9da5ff !important;
 }
-
-/* Global styles for BookCard */
 
 .book-card {
   width: 225px;
@@ -203,8 +198,7 @@ button:hover {
 .add-books {
   display: flex;
   justify-content: flex-end;
-  padding-right: 20px; /* adds space inside the container */
-  margin-right: 20px;  /* adds space outside the container */
-  margin-bottom: 20px; /* optional, keeps gap from content below */
+  padding-right: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
-

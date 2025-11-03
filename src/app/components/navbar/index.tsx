@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Menu } from "antd";
 import Link from "next/link";
 import Image from "next/image";
+import { Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import UserDrawer from "@/app/profile-details/slider";
 
 const items = [
   {
@@ -25,10 +28,18 @@ const items = [
 
 export default function Navbar() {
   const [current, setCurrent] = useState("home");
+  const [isSliderOpen, setIsSliderOpen] = useState(false);
 
   const onClick = (e: any) => {
     setCurrent(e.key);
   };
+
+  const handleSliderOpen = () => {
+    console.log("Avatar clicked");
+    setIsSliderOpen(true);
+  };
+
+  const handleSliderClose = () => setIsSliderOpen(false);
 
   return (
     <nav className="bg-gradient-to-r from-[#0e1a40] to-[#1a237e] shadow-md fixed w-full z-50 flex justify-between items-center px-6">
@@ -52,11 +63,15 @@ export default function Navbar() {
           onClick={onClick}
           selectedKeys={[current]}
           mode="horizontal"
-          style={{ width: '100%', justifyContent: 'right' }}
+          style={{ width: "100%", justifyContent: "right" }}
           items={items}
           overflowedIndicator={null}
           // className="bg-transparent flex justify-end flex-wrap"
         />
+      </div>
+      <div className="user-icon">
+        <Avatar size="large" icon={<UserOutlined />} onClick={handleSliderOpen}/>
+        <UserDrawer open={isSliderOpen} onClose={handleSliderClose} />
       </div>
     </nav>
   );
