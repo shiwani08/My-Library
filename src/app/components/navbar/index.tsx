@@ -28,6 +28,8 @@ const items = [
 
 export default function Navbar() {
   const [current, setCurrent] = useState("home");
+  const avatarSrc = "/images/hermione-avatar.png";
+  const username = "Hermione Granger";
   const [isSliderOpen, setIsSliderOpen] = useState(false);
 
   const onClick = (e: any) => {
@@ -70,8 +72,19 @@ export default function Navbar() {
         />
       </div>
       <div className="user-icon">
-        <Avatar size="large" icon={<UserOutlined />} onClick={handleSliderOpen}/>
-        <UserDrawer open={isSliderOpen} onClose={handleSliderClose} />
+        <Avatar
+          src={avatarSrc}
+          alt={username}
+          size="large"
+          icon={<UserOutlined />}
+          onClick={handleSliderOpen}
+        />
+        <UserDrawer
+          open={isSliderOpen}
+          onClose={handleSliderClose}
+          avatarSrc={avatarSrc}
+          username={username}
+        />
       </div>
     </nav>
   );
