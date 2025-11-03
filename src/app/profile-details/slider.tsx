@@ -12,12 +12,14 @@ export default function UserDrawer({
   onClose: () => void;
   avatarSrc: string;
   username: string;
+  readingLevel:string;
 }) {
   const userDetails = {
     User: username,
     "Books owned": 8745,
     "Books read": 7521,
     "Favorite Book": "Harry Potter and the Prisoner of Azkaban",
+    "Reading Level": "Library Prefect"
   };
 
   useEffect(() => {

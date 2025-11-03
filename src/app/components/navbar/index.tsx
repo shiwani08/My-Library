@@ -30,6 +30,7 @@ export default function Navbar() {
   const [current, setCurrent] = useState("home");
   const avatarSrc = "/images/hermione-avatar.png";
   const username = "Hermione Granger";
+  const readingLevel = "Library Prefect"
   const [isSliderOpen, setIsSliderOpen] = useState(false);
 
   const onClick = (e: any) => {
@@ -84,6 +85,7 @@ export default function Navbar() {
           onClose={handleSliderClose}
           avatarSrc={avatarSrc}
           username={username}
+          readingLevel={readingLevel}
         />
       </div>
     </nav>
