@@ -9,7 +9,7 @@ export default function CurrentlyReading() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await fetch("/data/books.json");
+      const response = await fetch("http://localhost:5000/get-books");
       const data = await response.json();
       console.log(data);
       console.log("from the useeffect func", data[0]._id);

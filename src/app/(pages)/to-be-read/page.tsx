@@ -9,7 +9,7 @@ export default function ToBeRead() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await fetch("/data/books.json");
+      const response = await fetch("http://localhost:5000/get-books");
       const data = await response.json();
       setBooks(data);
     };
