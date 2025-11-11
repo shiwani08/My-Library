@@ -14,16 +14,40 @@ type AddBookModalProps = {
   }) => void;
 };
 
-export default function AddBookModal({ isOpen, onClose, onAddBook }: AddBookModalProps) {
+export default function AddBookModal({
+  isOpen,
+  onClose,
+  onAddBook,
+}: AddBookModalProps) {
   const [form] = Form.useForm();
 
-  const handleSubmit = () => {
-    form.validateFields().then(values => {
-      onAddBook(values);
-      console.log("📚 New Book Added:", values);
+  const handleSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+
+      const res = await fetch("http://localhost:5000/add-book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Failed to add book");
+      }
+
+      const data = await res.json();
+      console.log("Book Added Successfully:", data);
+
+      onAddBook(data);
+
       form.resetFields();
       onClose();
-    });
+    } catch (err) {
+      console.error("Error adding book:", err);
+    }
   };
 
   return (
