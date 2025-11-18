@@ -195,13 +195,48 @@ button:hover {
 
 .book-card-title {
   color: #bfa76f;
-  font-weight: 600;
+  font-weight: 100;
+  font-size: medium;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  line-height: 1.4;
 }
 
 .book-card-author {
   color: #d4af37;
   font-style: italic;
 }
+
+.book-card-actions{
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+  margin-top: 10px;
+  padding-right: 15px;
+}
+
+.book-card-actions.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 10px #0e1a40;
+  background-color: #4191dd;
+}
+
+.book-card-edit-button{
+  /* background-color: #4191dd; */
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.book-card-edit-button:hover {
+  background-color: #4191dd;
+}
+
 
 .book-card-status {
   margin-top: 10px;
