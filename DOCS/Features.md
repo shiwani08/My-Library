@@ -13,6 +13,7 @@
 | Features         | Dependencies |  
 |------------------|---------|
 | **Fixing navbar in the pages** | |
+| **Global State Management** | |
 
 ## ⏭ NEXT PHASES
 | Features         | Dependencies |  

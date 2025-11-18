@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
-import { Modal, Form, Input, Select, Button, message } from "antd";
+import { Modal, Form, Input, Select, Button } from "antd";
+import { useBookOperations } from "@/app/customHooks/bookOperations.tsx/crudBooks";
 
 const { Option } = Select;
 
 type AddBookModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onAddBook: (book: {
-    title: string;
-    author: string;
-    status: string;
-    image_url: string;
-  }) => void;
   type?: "add" | "edit";
   bookId?: string;
   initialValues?: {
@@ -25,12 +20,12 @@ type AddBookModalProps = {
 export default function AddBookModal({
   isOpen,
   onClose,
-  onAddBook,
   type = "add",
   bookId,
   initialValues,
 }: AddBookModalProps) {
   const [form] = Form.useForm();
+  const { addBook, updateBook } = useBookOperations();
 
   // Set initial values when modal opens in edit mode
   useEffect(() => {
@@ -45,45 +40,19 @@ export default function AddBookModal({
     try {
       const values = await form.validateFields();
 
-      let res;
       if (type === "edit" && bookId) {
         // Edit existing book
-        res = await fetch(`http://localhost:5000/update-book/${bookId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        });
+        await updateBook(bookId, values);
       } else {
         // Add new book
-        res = await fetch("http://localhost:5000/add-book", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        });
+        await addBook(values);
       }
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || `Failed to ${type} book`);
-      }
-
-      const data = await res.json();
-      console.log(
-        `Book ${type === "edit" ? "Updated" : "Added"} Successfully:`,
-        data
-      );
-
-      onAddBook(values); // Pass the values back
 
       form.resetFields();
       onClose();
     } catch (err) {
       console.error(`Error ${type}ing book:`, err);
-      message.error(`Failed to ${type} book`);
+      // Error message already handled in the hook
     }
   };
 

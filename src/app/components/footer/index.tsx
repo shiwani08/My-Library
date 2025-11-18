@@ -2,6 +2,7 @@ import {
   TwitterOutlined,
   LinkedinOutlined,
   MailOutlined,
+  GithubOutlined,
 } from "@ant-design/icons";
 // import "./Footer.css";
 
@@ -14,13 +15,16 @@ export default function Footer() {
         </p>
 
         <div className="footer-icons">
+          <a href="mailto:shiwani.sonii08@gmail.com" className="footer-link">
+            <MailOutlined />
+          </a>
           <a
-            href="https://twitter.com/"
+            href="https://github.com/shiwani08"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-link"
           >
-            <TwitterOutlined />
+            <GithubOutlined />
           </a>
           <a
             href="https://linkedin.com/"
@@ -29,9 +33,6 @@ export default function Footer() {
             className="footer-link"
           >
             <LinkedinOutlined />
-          </a>
-          <a href="mailto:ravenclawlibrary@gmail.com" className="footer-link">
-            <MailOutlined />
           </a>
         </div>
       </div>

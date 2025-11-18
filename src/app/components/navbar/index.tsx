@@ -28,8 +28,8 @@ const items = [
 
 export default function Navbar() {
   const [current, setCurrent] = useState("home");
-  const avatarSrc = "/images/hermione-avatar.png";
-  const username = "Hermione Granger";
+  const avatarSrc = "/booked-logo.png";
+  const username = "Shiwani";
   const readingLevel = "Library Prefect"
   const [isSliderOpen, setIsSliderOpen] = useState(false);
 
