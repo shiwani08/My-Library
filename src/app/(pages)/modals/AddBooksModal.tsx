@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Modal, Form, Input, Select, Button } from "antd";
-import { useBookOperations } from "@/app/customHooks/bookOperations.tsx/crudBooks";
+import { useBookOperations } from "@/shared/customHooks/bookOperations.tsx/crudBooks";
 
 const { Option } = Select;
 

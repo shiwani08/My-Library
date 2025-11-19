@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { message } from "antd";
-import type { Book } from "@/types/books";
+import type { Book } from "@/shared/types/books";
 
 export const useBookOperations = () => {
   const [books, setBooks] = useState<Book[]>([]);

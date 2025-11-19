@@ -1,9 +1,9 @@
 "use client";
 
-import { useBookOperations } from "@/app/customHooks/bookOperations.tsx/crudBooks";
-import BookCard from "@/app/components/bookCard";
+import { useBookOperations } from "@/shared/customHooks/bookOperations.tsx/crudBooks";
+import BookCard from "@/shared/components/bookCard";
 import React, { useEffect, useState } from "react";
-import type { Book } from "@/types/books";
+import type { Book } from "@/shared/types/books";
 import { Button } from "antd";
 import AddBookModal from "../modals/AddBooksModal";
 

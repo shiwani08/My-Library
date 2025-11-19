@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { MedievalSharp, UnifrakturMaguntia } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "../shared/components/navbar";
+import Footer from "../shared/components/footer";
 
 // Import your magical fonts
 const medievalSharp = MedievalSharp({
