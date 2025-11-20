@@ -18,6 +18,10 @@
 ## ⏭ NEXT PHASES
 | Features         | Dependencies |  
 |------------------|---------|
+
+|  **Search for a book**     |  |  
+|  **Add owner details**      |  |
+|  **Borrowed or given**      |  |
 |  **Image url for the books**      |  |  
 |  **File upload option**  |  |  
 |  **User authntication** | |

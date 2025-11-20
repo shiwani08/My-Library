@@ -3,6 +3,8 @@ import { MedievalSharp, UnifrakturMaguntia } from "next/font/google";
 import "./globals.css";
 import Navbar from "../shared/components/navbar";
 import Footer from "../shared/components/footer";
+import StoreProvider from "../store/StoreProvider";
+import { Store } from "lucide";
 
 // Import your magical fonts
 const medievalSharp = MedievalSharp({
@@ -31,19 +33,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-  <html lang="en">
-    <body
-      className={`${medievalSharp.variable} ${unifraktur.variable} antialiased`}
-    >
-      <nav className="navbar-container">
-        <Navbar />
-      </nav>
+    <html lang="en">
+      <body
+        className={`${medievalSharp.variable} ${unifraktur.variable} antialiased`}
+      >
+        <StoreProvider>
+          <nav className="navbar-container">
+            <Navbar />
+          </nav>
 
-      <main className="page-content">{children}</main>
+          <main className="page-content">{children}</main>
 
-      <Footer />
-    </body>
-  </html>
-);
-
+          <Footer />
+        </StoreProvider>
+      </body>
+    </html>
+  );
 }

@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
-import { Modal, Form, Input, Select, Button } from "antd";
-import { useBookOperations } from "@/shared/customHooks/bookOperations.tsx/crudBooks";
+"use client";
 
-const { Option } = Select;
+import { useEffect } from "react";
+import { Form, Input, Modal, Select } from "antd";
+import { useAppDispatch } from "@/store/hooks";
+import { addBook, updateBook } from "@/store/features/books/booksSlice";
 
-type AddBookModalProps = {
+interface AddBookModalProps {
   isOpen: boolean;
   onClose: () => void;
   type?: "add" | "edit";
@@ -15,24 +16,26 @@ type AddBookModalProps = {
     status: string;
     image_url: string;
   };
-};
+}
 
 export default function AddBookModal({
   isOpen,
   onClose,
-  type = "add",
+  type,
   bookId,
   initialValues,
 }: AddBookModalProps) {
   const [form] = Form.useForm();
-  const { addBook, updateBook } = useBookOperations();
+  const dispatch = useAppDispatch();
 
-  // Set initial values when modal opens in edit mode
+  // Update form fields when initialValues or modal opens
   useEffect(() => {
-    if (isOpen && type === "edit" && initialValues) {
-      form.setFieldsValue(initialValues);
-    } else if (isOpen && type === "add") {
-      form.resetFields();
+    if (isOpen) {
+      if (type === "edit" && initialValues) {
+        form.setFieldsValue(initialValues);
+      } else {
+        form.resetFields();
+      }
     }
   }, [isOpen, type, initialValues, form]);
 
@@ -40,39 +43,37 @@ export default function AddBookModal({
     try {
       const values = await form.validateFields();
 
-      if (type === "edit" && bookId) {
-        // Edit existing book
-        await updateBook(bookId, values);
-      } else {
-        // Add new book
-        await addBook(values);
+      if (type === "add") {
+        await dispatch(addBook(values)).unwrap();
+      } else if (type === "edit" && bookId) {
+        await dispatch(updateBook({ bookId, bookData: values })).unwrap();
       }
 
       form.resetFields();
       onClose();
-    } catch (err) {
-      console.error(`Error ${type}ing book:`, err);
-      // Error message already handled in the hook
+    } catch (error) {
+      console.error("Form submission failed:", error);
     }
+  };
+
+  const handleCancel = () => {
+    form.resetFields();
+    onClose();
   };
 
   return (
     <Modal
-      title={type === "edit" ? "Edit Book" : "Add New Book"}
+      title={type === "add" ? "Add New Book" : "Edit Book"}
       open={isOpen}
-      onCancel={onClose}
-      footer={[
-        <Button key="cancel" onClick={onClose}>
-          Cancel
-        </Button>,
-        <Button key="submit" type="primary" onClick={handleSubmit}>
-          {type === "edit" ? "Update Book" : "Add Book"}
-        </Button>,
-      ]}
+      onOk={handleSubmit}
+      onCancel={handleCancel}
     >
-      <Form form={form} layout="vertical" name="book-form">
+      <Form
+        form={form}
+        layout="vertical"
+      >
         <Form.Item
-          label="Book Title"
+          label="Title"
           name="title"
           rules={[{ required: true, message: "Please enter the book title!" }]}
         >
@@ -90,21 +91,20 @@ export default function AddBookModal({
         <Form.Item
           label="Status"
           name="status"
-          rules={[{ required: true, message: "Please select book status!" }]}
+          rules={[{ required: true, message: "Please select status" }]}
         >
-          <Select placeholder="Select status">
-            <Option value="currently-reading">Currently Reading</Option>
-            <Option value="have-read">Have Read</Option>
-            <Option value="to-be-read">To Be Read</Option>
+          <Select placeholder="Select book status">
+            <Select.Option value="to-be-read">To Be Read</Select.Option>
+            <Select.Option value="currently-reading">Currently Reading</Select.Option>
+            <Select.Option value="have-read">Have Read</Select.Option>
           </Select>
         </Form.Item>
 
         <Form.Item
           label="Image URL"
           name="image_url"
-          rules={[{ required: false }]}
         >
-          <Input placeholder="Enter image URL" />
+          <Input placeholder="Enter image URL (optional)" />
         </Form.Item>
       </Form>
     </Modal>

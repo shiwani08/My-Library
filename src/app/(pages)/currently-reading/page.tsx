@@ -1,21 +1,27 @@
 "use client";
 
-import { useBookOperations } from "@/shared/customHooks/bookOperations.tsx/crudBooks";
-import BookCard from "@/shared/components/bookCard";
 import React, { useEffect, useState } from "react";
-import type { Book } from "@/shared/types/books";
-import { Button } from "antd";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks"; // Use typed hooks
+import { fetchBooks, deleteBook } from "@/store/features/books/booksSlice";
+
+import BookCard from "@/shared/components/bookCard";
 import AddBookModal from "../modals/AddBooksModal";
+import { Button } from "antd";
+import type { Book } from "@/store/features/books/booksSlice";
 
 export default function HomePage() {
-  const { books, loading, fetchBooks, deleteBook } = useBookOperations();
+  const dispatch = useAppDispatch();
+
+  const books = useAppSelector((state) => state.books.list);
+  const loading = useAppSelector((state) => state.books.loading);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"add" | "edit">("add");
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
   useEffect(() => {
-    fetchBooks();
-  }, []);
+    dispatch(fetchBooks());
+  }, [dispatch]);
 
   const handleEdit = (book: Book) => {
     setSelectedBook(book);
@@ -24,7 +30,11 @@ export default function HomePage() {
   };
 
   const handleDelete = async (bookId: string) => {
-    await deleteBook(bookId);
+    try {
+      await dispatch(deleteBook(bookId)).unwrap();
+    } catch (error) {
+      console.error("Delete failed:", error);
+    }
   };
 
   const handleOpenAddModal = () => {
@@ -41,7 +51,9 @@ export default function HomePage() {
   return (
     <main>
       <h1>All Books</h1>
-      <p>List of books that you own!</p>
+      <div>
+        <p>List of books that you own!</p>
+      </div>
 
       {loading ? (
         <p>Loading...</p>
