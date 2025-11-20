@@ -37,10 +37,12 @@ export default function Footer() {
         </div>
       </div>
 
-      <p className="footer-quote">
-        “Wit beyond measure is man’s greatest treasure.” — Rowena Ravenclaw
+      <div className="footer-quote">
+        <p>
+          “Wit beyond measure is man’s greatest treasure.” — Rowena Ravenclaw
+        </p>
         <p>Made With ❤️ by Shiwani!</p>
-      </p>
+      </div>
     </footer>
   );
 }

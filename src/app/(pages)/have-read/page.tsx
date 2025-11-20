@@ -41,24 +41,30 @@ export default function HomePage() {
   return (
     <main>
       <h1>All Books</h1>
-      <p>List of books that you own!</p>
+      <div>
+        <p>List of books that you own!</p>
+      </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <div>
+          <p>Loading...</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {books.filter((book) => book.status === "have-read").map((book) => (
-            <BookCard
-              key={book._id}
-              _id={String(book._id)}
-              title={book.title}
-              author={book.author}
-              status={book.status}
-              image_url={book.image_url ?? ""}
-              onEdit={() => handleEdit(book)}
-              onDelete={() => handleDelete(String(book._id))}
-            />
-          ))}
+          {books
+            .filter((book) => book.status === "have-read")
+            .map((book) => (
+              <BookCard
+                key={book._id}
+                _id={String(book._id)}
+                title={book.title}
+                author={book.author}
+                status={book.status}
+                image_url={book.image_url ?? ""}
+                onEdit={() => handleEdit(book)}
+                onDelete={() => handleDelete(String(book._id))}
+              />
+            ))}
         </div>
       )}
 

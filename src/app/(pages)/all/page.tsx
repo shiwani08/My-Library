@@ -41,10 +41,14 @@ export default function HomePage() {
   return (
     <main>
       <h1>All Books</h1>
-      <p>List of books that you own!</p>
+      <div>
+        <p>List of books that you own!</p>
+      </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <div>
+          <p>Loading...</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {books.map((book) => (
