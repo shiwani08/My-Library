@@ -19,7 +19,8 @@
 | Features         | Dependencies |  
 |------------------|---------|
 
-|  **Search for a book**     |  |  
+|  **Search for a book**     |  | 
+|  **Not found template**     |  | 
 |  **Add owner details**      |  |
 |  **Borrowed or given**      |  |
 |  **Image url for the books**      |  |  
