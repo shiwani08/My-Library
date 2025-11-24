@@ -5,6 +5,7 @@ import Navbar from "../shared/components/navbar";
 import Footer from "../shared/components/footer";
 import StoreProvider from "../store/StoreProvider";
 import { Store } from "lucide";
+import LoginPage from "./(pages)/login/page";
 
 // Import your magical fonts
 const medievalSharp = MedievalSharp({
