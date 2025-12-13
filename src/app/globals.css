@@ -196,12 +196,16 @@ button:hover {
 .book-card-title {
   color: #bfa76f;
   font-weight: 100;
-  font-size: medium;
-  position: relative;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-  line-height: 1.4;
+  font-size: large;
+  line-height: 5rem;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;   /* number of lines */
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   height: 3.5rem;
 }
 

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks"; // Use typed hooks
 import { fetchBooks, deleteBook } from "@/store/features/books/booksSlice";
+// import Search from '@/app/ui/search';
 
 import BookCard from "@/shared/components/bookCard";
 import AddBookModal from "../modals/AddBooksModal";
@@ -54,6 +55,11 @@ export default function HomePage() {
       <div>
         <p>List of books that you own!</p>
       </div>
+
+      {/* <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
+        <Search placeholder="Search invoices..." />
+        <CreateInvoice />
+      </div> */}
 
       {loading ? (
         <p>Loading...</p>
