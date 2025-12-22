@@ -38,6 +38,7 @@ export default function LoginPage() {
       }
 
       console.log("LOGIN SUCCESS:", data);
+      alert("Login successful! Welcome " + data.user.username );
       router.push("/");
 
       // TODO:
