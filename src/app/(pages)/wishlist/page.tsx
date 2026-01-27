@@ -59,7 +59,7 @@ export default function HomePage() {
         <p>Loading...</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {books.filter((book) => book.status === "currently-reading").map((book) => (
+          {books.filter((book) => book.status === "have-read").map((book) => (
             <BookCard
               key={book._id}
               _id={String(book._id)}
