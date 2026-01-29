@@ -1,3 +1,5 @@
+
+```ts
 my-library/
 │
 ├── frontend/                     # Next.js frontend app
@@ -51,3 +53,48 @@ my-library/
     ├── routes/
     ├── static/
     └── templates/
+```
+
+# IF BACKEND IS DONE IN THE SAME FOLDER 
+
+```
+src
+│
+├── app
+│   ├── api                ← Route handlers (NOT business logic)
+│   │   ├── books
+│   │   │   └── route.ts
+│   │   ├── users
+│   │   │   └── route.ts
+│   │   ├── borrow
+│   │   │   └── route.ts
+│   │   └── auth
+│   │       └── route.ts
+│   │
+│   ├── (pages)
+│   └── profile-details
+│
+├── lib                    ⭐ VERY IMPORTANT FOLDER
+│   │
+│   ├── db.ts              ← database connection
+│   ├── prisma.ts / orm.ts
+│   ├── auth.ts
+│   ├── cache.ts
+│   └── utils.ts
+│
+├── modules                ⭐ Senior-level pattern
+│   │
+│   ├── books
+│   │   ├── book.service.ts
+│   │   ├── book.repository.ts
+│   │   ├── book.types.ts
+│   │
+│   ├── users
+│   ├── borrow
+│   └── fines
+│
+├── components
+├── store
+├── constants
+└── shared
+```
