@@ -1,14 +1,20 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks"; // Use typed hooks
 import { fetchBooks, deleteBook } from "@/store/features/books/booksSlice";
 // import Search from '@/app/ui/search';
 
 import BookCard from "@/shared/components/bookCard";
 import AddBookModal from "../modals/AddBooksModal";
-import { Button } from "antd";
+import { Button, Input, Select, Space } from "antd";
 import type { Book } from "@/store/features/books/booksSlice";
+
+const READING_STATUS_OPTIONS = [
+  { value: "to-be-read", label: "To be read" },
+  { value: "currently-reading", label: "Currently reading" },
+  { value: "have-read", label: "Have read" },
+];
 
 export default function HomePage() {
   const dispatch = useAppDispatch();
@@ -19,6 +25,28 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"add" | "edit">("add");
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+
+  const [titleFilter, setTitleFilter] = useState("");
+  const [authorFilter, setAuthorFilter] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<string | null>(null);
+
+  const uniqueAuthors = useMemo(
+    () => [...new Set(books.map((b) => b.author).filter(Boolean))].sort(),
+    [books]
+  );
+
+  const filteredBooks = useMemo(() => {
+    return books.filter((book) => {
+      const matchesTitle =
+        !titleFilter ||
+        book.title.toLowerCase().includes(titleFilter.toLowerCase());
+      const matchesAuthor =
+        !authorFilter || book.author === authorFilter;
+      const matchesStatus =
+        !statusFilter || book.status === statusFilter;
+      return matchesTitle && matchesAuthor && matchesStatus;
+    });
+  }, [books, titleFilter, authorFilter, statusFilter]);
 
   useEffect(() => {
     dispatch(fetchBooks());
@@ -51,21 +79,44 @@ export default function HomePage() {
 
   return (
     <main>
-      <h1>All Books</h1>
+      <h1 className="pl-6 md:pl-8">All Books</h1>
       <div>
-        <p>List of books that you own!</p>
+        <p className="pl-6 md:pl-8" >List of books that you own!</p>
       </div>
 
-      {/* <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search invoices..." />
-        <CreateInvoice />
-      </div> */}
+      <div className="filters mb-6 flex flex-wrap items-center gap-4 pl-6 md:pl-8">
+        <Space wrap size="middle">
+          <Input
+            placeholder="Filter by title"
+            value={titleFilter}
+            onChange={(e) => setTitleFilter(e.target.value)}
+            allowClear
+            style={{ minWidth: 180 }}
+          />
+          <Select
+            placeholder="Filter by author"
+            value={authorFilter}
+            onChange={setAuthorFilter}
+            allowClear
+            style={{ minWidth: 180 }}
+            options={uniqueAuthors.map((a) => ({ value: a, label: a }))}
+          />
+          <Select
+            placeholder="Filter by reading status"
+            value={statusFilter}
+            onChange={setStatusFilter}
+            allowClear
+            style={{ minWidth: 180 }}
+            options={READING_STATUS_OPTIONS}
+          />
+        </Space>
+      </div>
 
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {books.map((book) => (
+          {filteredBooks.map((book) => (
             <BookCard
               key={book._id}
               _id={String(book._id)}
