@@ -49,16 +49,16 @@ export default function HomePage() {
   };
 
   return (
-    <main>
-      <h1>All Books</h1>
+    <main className="px-3 sm:px-4 md:px-6 lg:px-8 pb-8">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl pt-2 pb-1">Have Read</h1>
       <div>
-        <p>List of books that you own!</p>
+        <p className="text-sm sm:text-base text-foreground/90 pb-4">Books you have completed reading.</p>
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <p className="py-4">Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {books.filter((book) => book.status === "have-read").map((book) => (
             <BookCard
               key={book._id}
@@ -74,8 +74,8 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="add-books">
-        <Button type="primary" onClick={handleOpenAddModal}>
+      <div className="add-books mt-4 flex justify-end">
+        <Button type="primary" onClick={handleOpenAddModal} className="w-full sm:w-auto">
           + Add Book
         </Button>
 

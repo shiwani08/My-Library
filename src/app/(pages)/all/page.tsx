@@ -7,8 +7,9 @@ import { fetchBooks, deleteBook } from "@/store/features/books/booksSlice";
 
 import BookCard from "@/shared/components/bookCard";
 import AddBookModal from "../modals/AddBooksModal";
-import { Button, Input, Select, Space } from "antd";
+import { Button, Input, Select, Space, Segmented, Table, Tag } from "antd";
 import type { Book } from "@/store/features/books/booksSlice";
+import { AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
 const READING_STATUS_OPTIONS = [
   { value: "to-be-read", label: "To be read" },
@@ -29,6 +30,7 @@ export default function HomePage() {
   const [titleFilter, setTitleFilter] = useState("");
   const [authorFilter, setAuthorFilter] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   const uniqueAuthors = useMemo(
     () => [...new Set(books.map((b) => b.author).filter(Boolean))].sort(),
@@ -61,6 +63,7 @@ export default function HomePage() {
   const handleDelete = async (bookId: string) => {
     try {
       await dispatch(deleteBook(bookId)).unwrap();
+      dispatch(fetchBooks());
     } catch (error) {
       console.error("Delete failed:", error);
     }
@@ -78,44 +81,58 @@ export default function HomePage() {
   };
 
   return (
-    <main>
-      <h1 className="pl-6 md:pl-8">All Books</h1>
+    <main className="px-3 sm:px-4 md:px-6 lg:px-8 pb-8">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl pt-2 pb-1">All Books</h1>
       <div>
-        <p className="pl-6 md:pl-8" >List of books that you own!</p>
+        <p className="text-sm sm:text-base text-foreground/90 pb-4">List of books that you own!</p>
       </div>
 
-      <div className="filters mb-6 flex flex-wrap items-center gap-4 pl-6 md:pl-8">
-        <Space wrap size="middle">
+      <div className="filters mb-4 sm:mb-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+        <Space wrap size="small" className="w-full sm:w-auto [&_.ant-input]:w-full [&_.ant-input]:min-w-0 sm:[&_.ant-input]:min-w-[140px] md:[&_.ant-input]:min-w-[180px] [&_.ant-select]:w-full [&_.ant-select]:min-w-0 sm:[&_.ant-select]:min-w-[140px] md:[&_.ant-select]:min-w-[180px]">
           <Input
             placeholder="Filter by title"
             value={titleFilter}
             onChange={(e) => setTitleFilter(e.target.value)}
             allowClear
-            style={{ minWidth: 180 }}
+            className="w-full sm:!w-auto min-w-0"
           />
           <Select
             placeholder="Filter by author"
             value={authorFilter}
             onChange={setAuthorFilter}
             allowClear
-            style={{ minWidth: 180 }}
+            className="w-full sm:!w-auto min-w-0"
+            style={{ minWidth: "clamp(0px, 100%, 180px)" }}
             options={uniqueAuthors.map((a) => ({ value: a, label: a }))}
           />
           <Select
-            placeholder="Filter by reading status"
+            placeholder="Filter by status"
             value={statusFilter}
             onChange={setStatusFilter}
             allowClear
-            style={{ minWidth: 180 }}
+            className="w-full sm:!w-auto min-w-0"
+            style={{ minWidth: "clamp(0px, 100%, 180px)" }}
             options={READING_STATUS_OPTIONS}
           />
+          <Segmented
+            value={viewMode}
+            onChange={(v) => setViewMode(v as "grid" | "list")}
+            options={[
+              { value: "grid", label: "Grid", icon: <AppstoreOutlined /> },
+              { value: "list", label: "List", icon: <UnorderedListOutlined /> },
+            ]}
+            className="w-full sm:w-auto"
+          />
         </Space>
+        <Button type="primary" onClick={handleOpenAddModal} className="w-full sm:w-auto shrink-0 sm:mr-6 order-first sm:order-none">
+          + Add Book
+        </Button>
       </div>
 
       {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <p className="py-4">Loading...</p>
+      ) : viewMode === "grid" ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {filteredBooks.map((book) => (
             <BookCard
               key={book._id}
@@ -129,18 +146,84 @@ export default function HomePage() {
             />
           ))}
         </div>
+      ) : (
+        <div className="overflow-x-auto -mx-3 sm:-mx-4 md:mx-0 px-3 sm:px-4 md:px-0">
+          <Table
+            dataSource={filteredBooks}
+            rowKey="_id"
+            pagination={{
+              pageSize: 20,
+              showSizeChanger: true,
+              pageSizeOptions: ["10", "20", "50", "100"],
+              size: "small",
+            }}
+            scroll={{ x: "max-content" }}
+            size="small"
+            columns={[
+              {
+                title: "Book title",
+                dataIndex: "title",
+                key: "title",
+                sorter: (a, b) => a.title.localeCompare(b.title),
+              },
+              {
+                title: "Author",
+                dataIndex: "author",
+                key: "author",
+                sorter: (a, b) => a.author.localeCompare(b.author),
+              },
+              {
+                title: "Reading status",
+                dataIndex: "status",
+                key: "status",
+                render: (status: string) => {
+                  const labels: Record<string, string> = {
+                    "to-be-read": "To be read",
+                    "currently-reading": "Currently reading",
+                    "have-read": "Have read",
+                  };
+                  const colors: Record<string, string> = {
+                    "to-be-read": "gold",
+                    "currently-reading": "geekblue",
+                    "have-read": "green",
+                  };
+                  return (
+                    <Tag color={colors[status] || "default"}>
+                      {labels[status] ?? status}
+                    </Tag>
+                  );
+                },
+              },
+              {
+                title: "Actions",
+                key: "actions",
+                render: (_, record) => (
+                  <Space>
+                    <Button type="link" size="small" onClick={() => handleEdit(record)}>
+                      Edit
+                    </Button>
+                    <Button
+                      type="link"
+                      size="small"
+                      danger
+                      onClick={() => handleDelete(String(record._id))}
+                    >
+                      Delete
+                    </Button>
+                  </Space>
+                ),
+              },
+            ]}
+          />
+        </div>
       )}
 
-      <div className="add-books">
-        <Button type="primary" onClick={handleOpenAddModal}>
-          + Add Book
-        </Button>
-
-        <AddBookModal
+      <AddBookModal
           isOpen={isModalOpen}
           onClose={handleModalClose}
           type={modalType}
           bookId={selectedBook?._id ? String(selectedBook._id) : undefined}
+          existingBooks={books}
           initialValues={
             selectedBook
               ? {
@@ -152,7 +235,6 @@ export default function HomePage() {
               : undefined
           }
         />
-      </div>
     </main>
   );
 }

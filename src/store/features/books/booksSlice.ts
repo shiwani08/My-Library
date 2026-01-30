@@ -1,5 +1,5 @@
 import { API_BASE } from "@/constants/ApiConstants";
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { message } from "antd";
 
 export interface Book {
@@ -33,9 +33,10 @@ export const fetchBooks = createAsyncThunk(
       const data = await response.json();
       console.log("API Response:", data);
       return data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       message.error("Failed to fetch books");
-      return rejectWithValue(error.message);
+      const errorMessage = error instanceof Error ? error.message : "Failed to fetch books";
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -66,9 +67,10 @@ export const addBook = createAsyncThunk(
       const data = await response.json();
       message.success("Book added successfully!");
       return data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       message.error("Failed to add book");
-      return rejectWithValue(error.message);
+      const errorMessage = error instanceof Error ? error.message : "Failed to add book";
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -105,9 +107,10 @@ export const updateBook = createAsyncThunk(
       const data = await response.json();
       message.success("Book updated successfully!");
       return data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       message.error("Failed to update book");
-      return rejectWithValue(error.message);
+      const errorMessage = error instanceof Error ? error.message : "Failed to update book";
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -124,9 +127,10 @@ export const deleteBook = createAsyncThunk(
 
       message.success("Book deleted successfully!");
       return bookId;
-    } catch (error: any) {
+    } catch (error: unknown) {
       message.error("Failed to delete book");
-      return rejectWithValue(error.message);
+      const errorMessage = error instanceof Error ? error.message : "Failed to delete book";
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -148,7 +152,8 @@ const booksSlice = createSlice({
       })
       .addCase(fetchBooks.fulfilled, (state, action) => {
         state.loading = false;
-        state.list = action.payload;
+        const raw = Array.isArray(action.payload) ? action.payload : [];
+        state.list = raw.map((b: Book) => ({ ...b, _id: String(b._id) }));
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         state.loading = false;
@@ -162,7 +167,8 @@ const booksSlice = createSlice({
       })
       .addCase(addBook.fulfilled, (state, action) => {
         state.loading = false;
-        state.list.push(action.payload);
+        const book = action.payload;
+        state.list.push({ ...book, _id: String(book._id) });
       })
       .addCase(addBook.rejected, (state, action) => {
         state.loading = false;
@@ -171,17 +177,19 @@ const booksSlice = createSlice({
 
     // Update Book
     builder.addCase(updateBook.fulfilled, (state, action) => {
-      const index = state.list.findIndex(
-        (book) => book._id === action.payload._id
-      );
+      const updatedBook = action.payload?.book ?? action.payload;
+      if (!updatedBook?._id) return;
+      const id = String(updatedBook._id);
+      const index = state.list.findIndex((book) => String(book._id) === id);
       if (index !== -1) {
-        state.list[index] = action.payload;
+        state.list[index] = { ...updatedBook, _id: id };
       }
     });
 
     // Delete Book
     builder.addCase(deleteBook.fulfilled, (state, action) => {
-      state.list = state.list.filter((book) => book._id !== action.payload);
+      const deletedId = String(action.payload);
+      state.list = state.list.filter((book) => String(book._id) !== deletedId);
     });
   },
 });
