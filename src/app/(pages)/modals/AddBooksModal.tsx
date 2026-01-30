@@ -1,15 +1,22 @@
 "use client";
 
 import { useEffect } from "react";
-import { Form, Input, Modal, Select } from "antd";
+import { Form, Input, Modal, Select, message } from "antd";
 import { useAppDispatch } from "@/store/hooks";
 import { addBook, updateBook } from "@/store/features/books/booksSlice";
+
+interface BookForDuplicateCheck {
+  title?: string;
+  author?: string;
+}
 
 interface AddBookModalProps {
   isOpen: boolean;
   onClose: () => void;
   type?: "add" | "edit";
   bookId?: string;
+  /** List of existing books to check for duplicates when adding. If provided, duplicate check runs inside the modal. */
+  existingBooks?: BookForDuplicateCheck[];
   initialValues?: {
     title: string;
     author: string;
@@ -23,6 +30,7 @@ export default function AddBookModal({
   onClose,
   type,
   bookId,
+  existingBooks,
   initialValues,
 }: AddBookModalProps) {
   const [form] = Form.useForm();
@@ -44,6 +52,19 @@ export default function AddBookModal({
       const values = await form.validateFields();
 
       if (type === "add") {
+        const titleNorm = String(values.title ?? "").trim().toLowerCase();
+        const authorNorm = String(values.author ?? "").trim().toLowerCase();
+        const isDuplicate =
+          Array.isArray(existingBooks) &&
+          existingBooks.some(
+            (b) =>
+              String(b.title ?? "").trim().toLowerCase() === titleNorm &&
+              String(b.author ?? "").trim().toLowerCase() === authorNorm
+          );
+        if (isDuplicate) {
+          message.warning("Book is already present.");
+          return;
+        }
         await dispatch(addBook(values)).unwrap();
       } else if (type === "edit" && bookId) {
         await dispatch(updateBook({ bookId, bookData: values })).unwrap();
@@ -67,6 +88,9 @@ export default function AddBookModal({
       open={isOpen}
       onOk={handleSubmit}
       onCancel={handleCancel}
+      width="min(100vw - 2rem, 520px)"
+      centered
+      destroyOnClose
     >
       <Form
         form={form}

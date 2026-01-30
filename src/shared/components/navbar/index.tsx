@@ -25,29 +25,29 @@ export default function Navbar() {
   const [isSliderOpen, setIsSliderOpen] = React.useState(false);
 
   return (
-    <nav className="bg-gradient-to-r from-[#0e1a40] to-[#1a237e] shadow-md fixed w-full z-50 flex justify-between items-center px-6">
+    <nav className="bg-gradient-to-r from-[#0e1a40] to-[#1a237e] shadow-md fixed w-full z-50 flex justify-between items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 md:px-6">
       {/* Logo */}
-      <div className="flex items-center gap-3 py-2 shrink-0">
+      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 py-1 shrink-0 min-w-0">
         <Image
           src={avatarSrc}
           alt="The Ravenclaw Library Logo"
           width={80}
-          height={100}
-          className="rounded-full"
+          height={80}
+          className="rounded-full w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-20 lg:w-20 lg:h-[100px] object-cover"
         />
-        <span className="text-xl text-[#c39439] font-semibold whitespace-nowrap">
+        <span className="text-[#c39439] font-semibold truncate text-sm sm:text-base md:text-xl">
           The Ravenclaw Library
         </span>
       </div>
 
       {/* Menu */}
-      <div className="flex-1 flex justify-end min-w-0">
+      <div className="flex-1 flex justify-end min-w-0 overflow-hidden">
         <Menu
           mode="horizontal"
           items={items}
           selectedKeys={[pathname]}
-          style={{ width: "100%", justifyContent: "right" }}
-          overflowedIndicator={null}
+          className="!border-0 !bg-transparent min-w-0 w-full [&_.ant-menu-item]:!px-2 sm:[&_.ant-menu-item]:!px-3 md:[&_.ant-menu-item]:!px-4 text-xs sm:text-sm md:text-base"
+          style={{ justifyContent: "flex-end" }}
         />
       </div>
 
@@ -55,9 +55,10 @@ export default function Navbar() {
       <Avatar
         src={avatarSrc}
         alt={username}
-        size="large"
+        size="default"
         icon={<UserOutlined />}
         onClick={() => setIsSliderOpen(true)}
+        className="shrink-0 !w-8 !h-8 sm:!w-9 sm:!h-9 md:!w-10 md:!h-10 lg:!w-12 lg:!h-12"
       />
 
       <UserDrawer
