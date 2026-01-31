@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks"; // Use typed hooks
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { fetchBooks, deleteBook } from "@/store/features/books/booksSlice";
-// import Search from '@/app/ui/search';
-
 import BookCard from "@/shared/components/bookCard";
 import AddBookModal from "../modals/AddBooksModal";
-import { Button, Input, Select, Space, Segmented, Table, Tag } from "antd";
+import { Button, Input, Select, Space, Segmented, Table, Tag, Pagination } from "antd";
 import type { Book } from "@/store/features/books/booksSlice";
 import { AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
@@ -19,7 +17,6 @@ const READING_STATUS_OPTIONS = [
 
 export default function HomePage() {
   const dispatch = useAppDispatch();
-
   const books = useAppSelector((state) => state.books.list);
   const loading = useAppSelector((state) => state.books.loading);
 
@@ -32,9 +29,13 @@ export default function HomePage() {
   const [statusFilter, setStatusFilter] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
+  // --- NEW PAGINATION STATE ---
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
+
   const uniqueAuthors = useMemo(
     () => [...new Set(books.map((b) => b.author).filter(Boolean))].sort(),
-    [books]
+    [books],
   );
 
   const filteredBooks = useMemo(() => {
@@ -42,13 +43,22 @@ export default function HomePage() {
       const matchesTitle =
         !titleFilter ||
         book.title.toLowerCase().includes(titleFilter.toLowerCase());
-      const matchesAuthor =
-        !authorFilter || book.author === authorFilter;
-      const matchesStatus =
-        !statusFilter || book.status === statusFilter;
+      const matchesAuthor = !authorFilter || book.author === authorFilter;
+      const matchesStatus = !statusFilter || book.status === statusFilter;
       return matchesTitle && matchesAuthor && matchesStatus;
     });
   }, [books, titleFilter, authorFilter, statusFilter]);
+
+  // --- CALCULATE PAGINATED DATA ---
+  const paginatedBooks = useMemo(() => {
+    const startIndex = (currentPage - 1) * pageSize;
+    return filteredBooks.slice(startIndex, startIndex + pageSize);
+  }, [filteredBooks, currentPage, pageSize]);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [titleFilter, authorFilter, statusFilter]);
 
   useEffect(() => {
     dispatch(fetchBooks());
@@ -84,11 +94,17 @@ export default function HomePage() {
     <main className="px-3 sm:px-4 md:px-6 lg:px-8 pb-8">
       <h1 className="text-2xl sm:text-3xl md:text-4xl pt-2 pb-1">All Books</h1>
       <div>
-        <p className="text-sm sm:text-base text-foreground/90 pb-4">List of books that you own!</p>
+        <p className="text-sm sm:text-base text-foreground/90 pb-4">
+          List of books that you own!
+        </p>
       </div>
 
       <div className="filters mb-4 sm:mb-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-between gap-3 sm:gap-4">
-        <Space wrap size="small" className="w-full sm:w-auto [&_.ant-input]:w-full [&_.ant-input]:min-w-0 sm:[&_.ant-input]:min-w-[140px] md:[&_.ant-input]:min-w-[180px] [&_.ant-select]:w-full [&_.ant-select]:min-w-0 sm:[&_.ant-select]:min-w-[140px] md:[&_.ant-select]:min-w-[180px]">
+        <Space
+          wrap
+          size="small"
+          className="w-full sm:w-auto [&_.ant-input]:w-full [&_.ant-input]:min-w-0 sm:[&_.ant-input]:min-w-[140px] md:[&_.ant-input]:min-w-[180px] [&_.ant-select]:w-full [&_.ant-select]:min-w-0 sm:[&_.ant-select]:min-w-[140px] md:[&_.ant-select]:min-w-[180px]"
+        >
           <Input
             placeholder="Filter by title"
             value={titleFilter}
@@ -124,7 +140,11 @@ export default function HomePage() {
             className="w-full sm:w-auto"
           />
         </Space>
-        <Button type="primary" onClick={handleOpenAddModal} className="w-full sm:w-auto shrink-0 sm:mr-6 order-first sm:order-none">
+        <Button
+          type="primary"
+          onClick={handleOpenAddModal}
+          className="w-full sm:w-auto shrink-0 sm:mr-6 order-first sm:order-none"
+        >
           + Add Book
         </Button>
       </div>
@@ -132,27 +152,50 @@ export default function HomePage() {
       {loading ? (
         <p className="py-4">Loading...</p>
       ) : viewMode === "grid" ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {filteredBooks.map((book) => (
-            <BookCard
-              key={book._id}
-              _id={String(book._id)}
-              title={book.title}
-              author={book.author}
-              status={book.status}
-              image_url={book.image_url ?? ""}
-              onEdit={() => handleEdit(book)}
-              onDelete={() => handleDelete(String(book._id))}
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            {/* Map over paginatedBooks instead of filteredBooks */}
+            {paginatedBooks.map((book) => (
+              <BookCard
+                key={book._id}
+                _id={String(book._id)}
+                title={book.title}
+                author={book.author}
+                status={book.status}
+                image_url={book.image_url ?? ""}
+                onEdit={() => handleEdit(book)}
+                onDelete={() => handleDelete(String(book._id))}
+              />
+            ))}
+          </div>
+          {/* Add Manual Pagination for Grid View */}
+          <div className="mt-8 flex justify-end">
+            <Pagination
+              current={currentPage}
+              pageSize={pageSize}
+              total={filteredBooks.length}
+              onChange={(page, size) => {
+                setCurrentPage(page);
+                setPageSize(size);
+              }}
+              showSizeChanger
+              pageSizeOptions={["10", "20", "50", "100"]}
             />
-          ))}
-        </div>
+          </div>
+        </>
       ) : (
-        <div className="overflow-x-auto -mx-3 sm:-mx-4 md:mx-0 px-3 sm:px-4 md:px-0">
+        <div className="overflow-x-auto">
           <Table
             dataSource={filteredBooks}
             rowKey="_id"
             pagination={{
-              pageSize: 20,
+              current: currentPage,
+              pageSize: pageSize,
+              total: filteredBooks.length,
+              onChange: (page, size) => {
+                setCurrentPage(page);
+                setPageSize(size);
+              },
               showSizeChanger: true,
               pageSizeOptions: ["10", "20", "50", "100"],
               size: "small",
@@ -199,7 +242,11 @@ export default function HomePage() {
                 key: "actions",
                 render: (_, record) => (
                   <Space>
-                    <Button type="link" size="small" onClick={() => handleEdit(record)}>
+                    <Button
+                      type="link"
+                      size="small"
+                      onClick={() => handleEdit(record)}
+                    >
                       Edit
                     </Button>
                     <Button
@@ -219,22 +266,22 @@ export default function HomePage() {
       )}
 
       <AddBookModal
-          isOpen={isModalOpen}
-          onClose={handleModalClose}
-          type={modalType}
-          bookId={selectedBook?._id ? String(selectedBook._id) : undefined}
-          existingBooks={books}
-          initialValues={
-            selectedBook
-              ? {
-                  title: selectedBook.title,
-                  author: selectedBook.author,
-                  status: selectedBook.status,
-                  image_url: selectedBook.image_url ?? "",
-                }
-              : undefined
-          }
-        />
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        type={modalType}
+        bookId={selectedBook?._id ? String(selectedBook._id) : undefined}
+        existingBooks={books}
+        initialValues={
+          selectedBook
+            ? {
+                title: selectedBook.title,
+                author: selectedBook.author,
+                status: selectedBook.status,
+                image_url: selectedBook.image_url ?? "",
+              }
+            : undefined
+        }
+      />
     </main>
   );
 }
