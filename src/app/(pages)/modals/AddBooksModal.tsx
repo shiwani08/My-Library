@@ -90,7 +90,7 @@ export default function AddBookModal({
       onCancel={handleCancel}
       width="min(100vw - 2rem, 520px)"
       centered
-      destroyOnClose
+      destroyOnHidden={true}
     >
       <Form
         form={form}

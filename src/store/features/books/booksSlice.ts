@@ -26,12 +26,12 @@ const initialState: BooksState = {
 export const fetchBooks = createAsyncThunk(
   "books/fetchBooks",
   async (_, { rejectWithValue }) => {
-    console.log("API_BASE in thunk in the book slice file:", API_BASE);
+    // console.log("API_BASE in thunk in the book slice file:", API_BASE);
     try {
       const response = await fetch(`${API_BASE}/get-books`);
       if (!response.ok) throw new Error("Failed to fetch books");
       const data = await response.json();
-      console.log("API Response:", data);
+      // console.log("API Response:", data);
       return data;
     } catch (error: unknown) {
       message.error("Failed to fetch books");
