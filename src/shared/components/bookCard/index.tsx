@@ -4,7 +4,7 @@ import { Card, Tag, Button, Space, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 type BookCardProps = {
-  _id: string;  // Add this
+  _id: string; 
   title: string;
   author: string;
   status: string;
@@ -24,7 +24,7 @@ export default function BookCard({
   title,
   author,
   status,
-  image_url,
+  // image_url,
   onEdit,
   onDelete,
 }: BookCardProps) {
