@@ -7,6 +7,8 @@
 | **Navbar** | |
 | **Edit option of the book**      |  |  
 | **Delete option of the book**  |  |  
+|  **Pagination** | |
+|  **Sorting** | |
 
 ## 🚧 IN PROGRESS
 
@@ -26,8 +28,6 @@
 |  **Image url for the books**      |  |  
 |  **File upload option**  |  |  
 |  **User authntication** | |
-|  **Pagination** | |
-|  **Sorting** | |
 |  **Loader in all pages** | |
 
 ** TRY MAKING BACKEND HERE
