@@ -1,6 +1,7 @@
 ## ⏭ NEXT PHASES
 | Features         | Dependencies |  
 |------------------|---------|
+|  **Authentication and authorization**     |  | 
 |  **Not found template**     |  |  
 |  **Add owner details**      |  |  
 |  **Borrowed or given**      |  |  
@@ -8,6 +9,8 @@
 |  **File upload option**  |  |  
 |  **User authntication** | |  
 |  **Loader in all pages** | |
+
+changing ui
 
 ** TRY MAKING BACKEND HERE
 
