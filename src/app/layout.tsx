@@ -6,6 +6,8 @@ import Footer from "../shared/components/footer";
 import StoreProvider from "../store/StoreProvider";
 import { Store } from "lucide";
 import LoginPage from "./(pages)/login/page";
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from "react-toastify/unstyled";
 
 // Import your magical fonts
 const medievalSharp = MedievalSharp({
@@ -46,6 +48,7 @@ export default function RootLayout({
           <main className="page-content">{children}</main>
 
           <Footer />
+          <ToastContainer position="top-right" autoClose={3000} />
         </StoreProvider>
       </body>
     </html>

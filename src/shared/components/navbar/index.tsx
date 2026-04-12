@@ -34,6 +34,7 @@ export default function Navbar() {
           width={80}
           height={80}
           className="rounded-full w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-20 lg:w-20 lg:h-[100px] object-cover"
+          loading="eager"
         />
         <span className="text-[#c39439] font-semibold truncate text-sm sm:text-base md:text-xl">
           The Ravenclaw Library

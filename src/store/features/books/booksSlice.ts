@@ -1,6 +1,7 @@
 import { API_BASE } from "@/constants/ApiConstants";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { message } from "antd";
+import { toast } from "react-toastify/unstyled";
 
 export interface Book {
   _id: string;
@@ -34,11 +35,12 @@ export const fetchBooks = createAsyncThunk(
       // console.log("API Response:", data);
       return data;
     } catch (error: unknown) {
-      message.error("Failed to fetch books");
-      const errorMessage = error instanceof Error ? error.message : "Failed to fetch books";
+      toast.error("Failed to fetch books");
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to fetch books";
       return rejectWithValue(errorMessage);
     }
-  }
+  },
 );
 
 export const addBook = createAsyncThunk(
@@ -50,7 +52,7 @@ export const addBook = createAsyncThunk(
       status: string;
       image_url: string;
     },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const response = await fetch(`${API_BASE}/add-book`, {
@@ -69,10 +71,11 @@ export const addBook = createAsyncThunk(
       return data;
     } catch (error: unknown) {
       message.error("Failed to add book");
-      const errorMessage = error instanceof Error ? error.message : "Failed to add book";
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to add book";
       return rejectWithValue(errorMessage);
     }
-  }
+  },
 );
 
 export const updateBook = createAsyncThunk(
@@ -90,7 +93,7 @@ export const updateBook = createAsyncThunk(
         image_url: string;
       };
     },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const response = await fetch(`${API_BASE}/update-book/${bookId}`, {
@@ -109,10 +112,11 @@ export const updateBook = createAsyncThunk(
       return data;
     } catch (error: unknown) {
       message.error("Failed to update book");
-      const errorMessage = error instanceof Error ? error.message : "Failed to update book";
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to update book";
       return rejectWithValue(errorMessage);
     }
-  }
+  },
 );
 
 export const deleteBook = createAsyncThunk(
@@ -129,10 +133,11 @@ export const deleteBook = createAsyncThunk(
       return bookId;
     } catch (error: unknown) {
       message.error("Failed to delete book");
-      const errorMessage = error instanceof Error ? error.message : "Failed to delete book";
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to delete book";
       return rejectWithValue(errorMessage);
     }
-  }
+  },
 );
 
 const booksSlice = createSlice({
