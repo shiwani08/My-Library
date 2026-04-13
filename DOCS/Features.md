@@ -17,5 +17,6 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading - 
 
 
 ** TRY MAKING BACKEND HERE
+using supabase for baas
 
 ![alt text](image-1.png)
