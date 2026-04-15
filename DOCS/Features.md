@@ -18,5 +18,6 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading - 
 
 ** TRY MAKING BACKEND HERE
 using supabase for baas
+login and signin pages are left
 
 ![alt text](image-1.png)
